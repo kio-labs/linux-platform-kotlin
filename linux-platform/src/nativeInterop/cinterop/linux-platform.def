@@ -1,14 +1,14 @@
 headers = sys/stat.h fcntl.h
 package = linux.platform
-compilerOpts = \
-    -D_GNU_SOURCE \
-    -I/usr/include \
-    -I/usr/include/x86_64-linux-gnu
 
 ---
 #include <unistd.h>
 #include <sys/syscall.h>
 #include <linux/stat.h>
+
+#ifndef __NR_statx
+#define __NR_statx 332
+#endif
 
 static inline int linux_statx(
     int dirfd,
@@ -18,7 +18,7 @@ static inline int linux_statx(
     struct statx *buf
 ) {
     return syscall(
-        SYS_statx,
+        __NR_statx,
         dirfd,
         path,
         flags,
