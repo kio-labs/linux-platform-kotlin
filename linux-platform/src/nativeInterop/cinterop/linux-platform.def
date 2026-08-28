@@ -6,7 +6,8 @@ compilerOpts = \
     -I/usr/include/x86_64-linux-gnu
 
 ---
-
+#include <unistd.h>
+#include <sys/syscall.h>
 #include <linux/stat.h>
 
 static inline int linux_statx(
