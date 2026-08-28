@@ -4,3 +4,24 @@ compilerOpts = \
     -D_GNU_SOURCE \
     -I/usr/include \
     -I/usr/include/x86_64-linux-gnu
+
+---
+
+#include <linux/stat.h>
+
+static inline int linux_statx(
+    int dirfd,
+    const char *path,
+    int flags,
+    unsigned int mask,
+    struct statx *buf
+) {
+    return syscall(
+        SYS_statx,
+        dirfd,
+        path,
+        flags,
+        mask,
+        buf
+    );
+}
