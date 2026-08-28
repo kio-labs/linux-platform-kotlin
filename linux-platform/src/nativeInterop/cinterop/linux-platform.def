@@ -1,9 +1,5 @@
 headers = sys/stat.h fcntl.h
 package = linux.platform
-compilerOpts = \
-    -D_GNU_SOURCE \
-    -I/usr/include \
-    -I/usr/include/x86_64-linux-gnu
 
 ---
 #include <unistd.h>
