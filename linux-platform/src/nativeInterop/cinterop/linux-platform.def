@@ -8,6 +8,7 @@ package = linux.platform
 
 #ifndef __NR_statx
 #define __NR_statx 332
+#endif
 
 static inline int linux_statx(
     int dirfd,
