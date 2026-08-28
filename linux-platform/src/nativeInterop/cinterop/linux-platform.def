@@ -6,6 +6,9 @@ package = linux.platform
 #include <sys/syscall.h>
 #include <linux/stat.h>
 
+#ifndef __NR_statx
+#define __NR_statx 332
+
 static inline int linux_statx(
     int dirfd,
     const char *path,
@@ -14,7 +17,7 @@ static inline int linux_statx(
     struct statx *buf
 ) {
     return syscall(
-        SYS_statx,
+        __NR_statx,
         dirfd,
         path,
         flags,
